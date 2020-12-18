@@ -2,179 +2,174 @@
   <header class="hero">
     <img class="hero-image" src="/wine-hero.webp">
     <nav class="navigation">
-      <section class="primary-navigation">
-        <h1>WineFlix</h1>
-        <ul class="navigation-links">
-          <li class="active">
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Whites</a>
-          </li>
-          <li><a href="#">Reds</a>
-          </li>
-          <li><a href="#">Blends</a></li>
-        </ul>
-      </section>
-      <section class="secondary-navigation">
-        <span class="user-avatar">
-          <a href="#">S</a>
-        </span>
-      </section>
+      <PrimaryNavigation :links="getPrimaryLinks"/>
+      <SecondaryNavigation label="S"/>
     </nav>
-    <div class="hero-content">
-      <h2>
-        <img alt="Rex Goliath" src="/rex-goliath-logo.png">
-      </h2>
-      <h3>His Royal Majesty is back.</h3>
-      <p>
-        America's most unhinged rooster is out of retirement, and this time? He's mad
-        as hell.  Experience the unapologetic flavor burst of Rex Goliath.
-      </p>
-      <ul class="controls">
-        <li>
-          <button class="primary-action">
-            <FontAwesomeIcon icon="play" />
-            <span>Drink</span>
-          </button>
-        </li>
-        <li>
-          <button class="secondary-action">
-            <FontAwesomeIcon icon="info-circle" />
-            <span>More Info</span>
-          </button>
-        </li>
-      </ul>
-    </div>
+    <HeroContent
+        :heroTitle="getHeroTitle"
+        :heroImageUrl="getHeroImageUrl"
+        :heroSubTitle="getHeroSubTitle"
+        :heroDescription="getHeroDescription"/>
   </header>
   <main>
-    <section class="category">
-      <h2>Drink Again</h2>
-      <ul>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <span class="new-badge">New!</span>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <span class="new-badge">New!</span>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <span class="new-badge">New!</span>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section class="category">
-      <h2>Keep Drinking</h2>
-      <ul>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="wine">
-            <img src="/red-wine.jpg" alt="Wine">
-            <div class="amount-consumed">
-              <progress min="0" max="100" value="22"></progress>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section>
+    <CategorySection sectionTitle="Drink Again" :sectionValues="getDrinkAgainItems"/>
+    <CategorySection sectionTitle="Keep Drinking" :sectionValues="getKeepDrinkingItems"/>
   </main>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import PrimaryNavigation from '@/components/PrimaryNavigation.vue';
+import SecondaryNavigation from '@/components/SecondaryNavigation.vue';
+import HeroContent from '@/components/HeroContent.vue';
+import CategorySection from '@/components/CategorySection.vue';
 
 export default {
   name: 'App',
   components: {
-    FontAwesomeIcon,
+    PrimaryNavigation,
+    SecondaryNavigation,
+    HeroContent,
+    CategorySection,
+  },
+  data() {
+    return {
+      primaryLinks: [
+        {
+          isActive: true,
+          linkHref: '#',
+          linkLabel: 'Home',
+        },
+        {
+          isActive: false,
+          linkHref: '#',
+          linkLabel: 'Whites',
+        },
+        {
+          isActive: false,
+          linkHref: '#',
+          linkLabel: 'Reds',
+        },
+        {
+          isActive: false,
+          linkHref: '#',
+          linkLabel: 'Blends',
+        },
+      ],
+      heroContent: {
+        title: 'Rex Goliath',
+        subtitle: 'His Royal Majesty is back.',
+        imageUrl: '/rex-goliath-logo.png',
+        description: 'America\'s most unhinged rooster is out of retirement, and this time? He\'s mad as hell.  Experience the unapologetic flavor burst of Rex Goliath.',
+      },
+      wines: [
+        {
+          id: 1,
+          imageUrl: '/red-wine.jpg',
+          isNew: true,
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 2,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 3,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isNew: true,
+          isFinished: true,
+        }, {
+          id: 4,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 5,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isNew: true,
+          isFinished: true,
+        }, {
+          id: 6,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 7,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 8,
+          imageUrl: '/red-wine.jpg',
+          label: 'Wine',
+          isFinished: true,
+        }, {
+          id: 1,
+          imageUrl: '/red-wine.jpg',
+          progress: 8,
+          label: 'Wine',
+        }, {
+          id: 2,
+          imageUrl: '/red-wine.jpg',
+          progress: 66,
+          label: 'Wine',
+        }, {
+          id: 3,
+          imageUrl: '/red-wine.jpg',
+          progress: 98,
+          label: 'Wine',
+        }, {
+          id: 4,
+          imageUrl: '/red-wine.jpg',
+          progress: 44,
+          label: 'Wine',
+        }, {
+          id: 5,
+          imageUrl: '/red-wine.jpg',
+          progress: 70,
+          label: 'Wine',
+        }, {
+          id: 6,
+          imageUrl: '/red-wine.jpg',
+          progress: 15,
+          label: 'Wine',
+        }, {
+          id: 7,
+          imageUrl: '/red-wine.jpg',
+          progress: 22,
+          label: 'Wine',
+        }, {
+          id: 8,
+          imageUrl: '/red-wine.jpg',
+          progress: 32,
+          label: 'Wine',
+        }],
+    };
+  },
+  computed: {
+    getKeepDrinkingItems() {
+      return this.wines.filter((item) => !item.isFinished);
+    },
+    getDrinkAgainItems() {
+      return this.wines.filter((item) => item.isFinished === true);
+    },
+    getPrimaryLinks() {
+      return this.primaryLinks;
+    },
+    getHeroTitle() {
+      return this.heroContent.title;
+    },
+    getHeroSubTitle() {
+      return this.heroContent.subtitle;
+    },
+    getHeroImageUrl() {
+      return this.heroContent.imageUrl;
+    },
+    getHeroDescription() {
+      return this.heroContent.description;
+    },
   },
 };
 </script>
